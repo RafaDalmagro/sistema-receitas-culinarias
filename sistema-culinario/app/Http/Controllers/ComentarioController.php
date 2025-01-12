@@ -33,4 +33,18 @@ class ComentarioController extends Controller
 
         return redirect()->back()->with('success', 'Comentário excluído com sucesso!');
     }
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'comentario' => 'required|string',
+        ]);
+
+        $comentario = Comentario::findOrFail($id);
+
+        $comentario->update([
+            'comentario' => $request->comentario,
+        ]);
+
+        return redirect()->back()->with('Success', 'Comentário atualizado com sucesso!');
+    }
 }
