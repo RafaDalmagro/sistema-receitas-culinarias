@@ -75,7 +75,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
+                            <a href="" class="nav-link text-white">
                                 <svg class="bi d-block mx-auto mb-1" width="24" height="24" style="fill:white">
                                     <use xlink:href="#grid" />
                                 </svg>
@@ -94,14 +94,14 @@
                 </div>
             </div>
         </div>
-        <div class="px-3 py-2 border-bottom mb-3">
-            <div class="container d-flex flex-wrap justify-content-end">
-                <div class="text-end">
-                    <button type="button" class="btn btn-light text-dark me-2">Login</button>
-                    <button type="button" class="btn btn-primary">Sign-up</button>
+            <div class="px-3 py-2 border-bottom mb-3">
+                <div class="container d-flex flex-wrap justify-content-end">
+                    <div class="text-end">
+                        <button type="button" class="btn btn-light text-dark me-3">Login</button>
+                        <button type="button" class="btn btn-primary">Sign-up</button>
+                    </div>
                 </div>
             </div>
-        </div>
     </header>
     
     <!-- Optional JavaScript -->

@@ -10,10 +10,15 @@ Route::post('/receitas/{receita_id}/comentarios', [ComentarioController::class, 
 Route::delete('/comentarios/{id}', [ComentarioController::class, 'destroy'])->name('comentarios.destroy');
 Route::put('/comentarios/{id}', [ComentarioController::class, 'update'])->name('comentarios.update');
 
-Route::get( '/categorias', [ CategoriaController::class, 'index'] );
+Route::get('/categorias', [ CategoriaController::class, 'index'] );
 Route::get('/categorias/create', [CategoriaController::class, 'create']);
-Route::delete('/categories/{id}', [CategoriaController::class, 'destroy']);
+    Route::get('/categorias/edit/{id}', [CategoriaController::class, 'edit'])->name('categorias.edit');
+Route::post('/categorias', [CategoriaController::class, 'store'])->name('categorias.store');
+Route::delete('/categorias/{id}', [CategoriaController::class, 'destroy']);
+Route::put('/categorias/{id}', [CategoriaController::class, 'update'])->name('categorias.update');
+
 
 Route::get('/', [ReceitaController::class, 'index']);
 Route::get('/receitas', [ ReceitaController::class, 'index']);
+Route::get('/receitas/create', [ ReceitaController::class, 'create']);
 Route::get('/receitas/{id}', [ReceitaController::class, 'show'])->name('receitas.show');

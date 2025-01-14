@@ -15,9 +15,10 @@ class ReceitaController extends Controller
     }
 
     public function create(){
+        $categorias = Categoria::all();
         $receitas = Receita::all();
 
-        return view('receitas.create', compact('receitas'));
+        return view('receitas.create', compact('receitas', 'categorias'));
     }
 
     public function store(Request $request){

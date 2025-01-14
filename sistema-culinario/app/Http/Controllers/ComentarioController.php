@@ -47,4 +47,5 @@ class ComentarioController extends Controller
 
         return redirect()->back()->with('Success', 'Comentário atualizado com sucesso!');
     }
+    
 }

@@ -27,7 +27,7 @@ class CategoriaController extends Controller
 
         $categoria->save();
 
-        return redirect('/categorias')->with( 'msg', 'Receita
+        return redirect('/categorias')->with( 'msg', 'Categoria
         criada com sucesso!' );
     }
 
@@ -39,7 +39,7 @@ class CategoriaController extends Controller
     public function edit($id){
         $categoria = Categoria::findOrFail($id);
 
-        return view('/categoria.edit', ['categoria' => $categoria]);
+        return view('categorias.edit', compact('categoria'));
     }
 
     public function update(Request $request){
