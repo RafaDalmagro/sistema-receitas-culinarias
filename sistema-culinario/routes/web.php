@@ -19,8 +19,8 @@ Route::delete('/categorias/{id}', [CategoriaController::class, 'destroy']);
 
 Route::get('/', [ReceitaController::class, 'home'])->name('welcome');
 Route::get('/receitas', [ ReceitaController::class, 'index']);
+Route::get('/receitas/create', [ReceitaController::class, 'create']);
 Route::get('/receitas/{id}', [ReceitaController::class, 'show'])->name('receitas.show');
-Route::get('/receitas/create', [ ReceitaController::class, 'create']);
 Route::get('/receitas/edit/{id}', [ReceitaController::class, 'edit'])->name('receita.edit');
 Route::post('/receitas', [ReceitaController::class, 'store'])->name('receitas.store');
 Route::put('/receitas/update/{id}', [ReceitaController::class, 'update']);

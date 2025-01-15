@@ -8,17 +8,15 @@ use App\Models\Categoria;
 
 class ReceitaController extends Controller
 {
-    public function index() {
+    public function index(){
         $receitas = Receita::with('categoria')->get();
-        
+
         return view('receitas.index', compact('receitas'));
     }
 
     public function create(){
         $categorias = Categoria::all();
-        $receitas = Receita::all();
-
-        return view('receitas.create', compact('receitas', 'categorias'));
+        return view('receitas.create', ['categorias' => $categorias]);
     }
 
     public function store(Request $request){
@@ -30,8 +28,7 @@ class ReceitaController extends Controller
         $receita->categoria_id = $request->categoria_id;
         $receita->save();
 
-        return redirect('/receitas')->with( 'msg', 'Receita
-        criada com sucesso!' );
+        return redirect('/receitas')->with('msg', 'Receita criada com sucesso!');
     }
 
     public function show($id){
@@ -41,27 +38,26 @@ class ReceitaController extends Controller
     }
 
     public function destroy($id){
-        Receita::findOrFail( $id )->delete() ;
-        return redirect( '/receitas' )->with( 'msg', 'Categoria excluída com sucesso!' );
+        Receita::findOrFail($id)->delete();
+        return redirect('/receitas')->with('msg', 'Receita excluída com sucesso!');
     }
 
     public function edit($id){
         $categorias = Categoria::all();
         $receita = Receita::findOrFail($id);
 
-        return view('/receitas.edit', ['receita' => $receita, 'categorias' => $categorias]);
+        return view('receitas.edit', ['receita' => $receita, 'categorias' => $categorias]);
     }
 
     public function update(Request $request){
-        Receita::findOrFail( $request->id )->update( $request-> all() );
-        return redirect('/receita') -> with('msg', 'Receita editada com sucesso.');
+        Receita::findOrFail($request->id)->update($request->all());
+        return redirect('/receitas')->with('msg', 'Receita editada com sucesso.');
     }
 
     public function home(){
-        // Buscar receitas com a contagem de comentários
         $receitas = Receita::withCount('comentarios')
-            ->orderBy('comentarios_count', 'desc') // Ordena pelo número de comentários
-            ->take(3) // Limita às 5 receitas mais comentadas
+            ->orderBy('comentarios_count', 'desc')
+            ->take(3)
             ->get();
 
         return view('welcome', compact('receitas'));
