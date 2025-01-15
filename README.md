@@ -53,7 +53,7 @@ https://www.notion.so/leafarel/Sistema-de-Receitas-Culin-rias-173e3cc5ff30806281
 1. **Clonar o Repositório**
    - Abra o terminal e vá até o diretório onde deseja clonar o projeto:
      ```bash
-     cd /caminho/do/diretorio
+     cd /caminho/escolhido
      ```
    - Clone o repositório do Git:
      ```bash
@@ -61,7 +61,7 @@ https://www.notion.so/leafarel/Sistema-de-Receitas-Culin-rias-173e3cc5ff30806281
      ```
    - Entre no diretório do projeto:
      ```bash
-     cd nome-do-projeto
+     cd sistema-receitas-culinarias
      ```
 
 2. **Instalar Dependências**
