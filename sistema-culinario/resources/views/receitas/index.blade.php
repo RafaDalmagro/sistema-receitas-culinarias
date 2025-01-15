@@ -2,12 +2,12 @@
 @section('title', 'Receitas')
 @section('content')
 <div class="d-flex justify-content-between align-items-center">
-            <h1>Lista de Tarefas</h1>
-            <a href="" type="button" class="btn btn-primary">
-                <i class="bi bi-plus-square"></i>
-                <span>Cadastrar Receita</span>
-            </a>
-        </div>
+    <h1>Lista de Receitas</h1>
+    <a href="/receitas/create" class="btn btn-primary">
+        <i class="bi bi-plus-square"></i>
+        <span>Cadastrar Receita</span>
+    </a>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -32,7 +32,7 @@
                 </a>
             </td>
             <td>
-                <form action="/tasks/{{$receita->id}}" method="post">
+                <form action="/receitas/{{$receita->id}}" method="post">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir essa receita?')">

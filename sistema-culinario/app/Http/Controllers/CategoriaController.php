@@ -24,7 +24,6 @@ class CategoriaController extends Controller
 
         $categoria->nome = $request->nome;
         $categoria->descricao = $request->descricao;
-
         $categoria->save();
 
         return redirect('/categorias')->with( 'msg', 'Categoria

@@ -28,7 +28,6 @@ class ReceitaController extends Controller
         $receita->ingredientes = $request->ingredientes;
         $receita->modo_preparo = $request->modo_preparo;
         $receita->categoria_id = $request->categoria_id;
-
         $receita->save();
 
         return redirect('/receitas')->with( 'msg', 'Receita
@@ -50,12 +49,21 @@ class ReceitaController extends Controller
         $categorias = Categoria::all();
         $receita = Receita::findOrFail($id);
 
-        return view('/receita.edit', ['receita' => $receita, 'categorias' => $categorias]);
+        return view('/receitas.edit', ['receita' => $receita, 'categorias' => $categorias]);
     }
 
     public function update(Request $request){
         Receita::findOrFail( $request->id )->update( $request-> all() );
-
         return redirect('/receita') -> with('msg', 'Receita editada com sucesso.');
+    }
+
+    public function home(){
+        // Buscar receitas com a contagem de comentários
+        $receitas = Receita::withCount('comentarios')
+            ->orderBy('comentarios_count', 'desc') // Ordena pelo número de comentários
+            ->take(3) // Limita às 5 receitas mais comentadas
+            ->get();
+
+        return view('welcome', compact('receitas'));
     }
 }

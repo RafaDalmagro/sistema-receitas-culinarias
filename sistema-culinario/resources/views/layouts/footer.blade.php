@@ -11,10 +11,9 @@
             <div class="col-md-4">
                 <h5 class="fw-bold mb-3 text-white">Links Rápidos</h5>
                 <ul class="list-unstyled small">
-                    <li><a href="#" class="text-decoration-none text-light">Painel</a></li>
-                    <li><a href="#" class="text-decoration-none text-light">Receitas</a></li>
-                    <li><a href="#" class="text-decoration-none text-light">Comentários</a></li>
-                    <li><a href="#" class="text-decoration-none text-light">Categorias</a></li>
+                    <li><a href="/" class="text-decoration-none text-light">Início</a></li>
+                    <li><a href="/receitas" class="text-decoration-none text-light">Receitas</a></li>
+                    <li><a href="/categorias" class="text-decoration-none text-light">Categorias</a></li>
                 </ul>
             </div>
 

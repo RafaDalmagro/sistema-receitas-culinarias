@@ -5,6 +5,13 @@
 @section('content')
 <div class="container my-5">
 
+    <div class="d-flex justify-content-end align-items-end">
+        <a href="/" type="button" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i>
+            <span>Voltar para o Início</span>
+        </a>
+    </div>
+
     <h1>{{ $receita->nome }}</h1>
     <p><strong>Ingredientes:</strong></p>
     <p>{{ $receita->ingredientes }}</p>
@@ -67,7 +74,6 @@
             </form>
         </li>
         @endforeach
-
     </ul>
     @endif
 </div>

@@ -1,16 +1,16 @@
 @extends('layouts.main')
-@section('title', 'Criar Categoria')
+@section('title', 'Editar Receita')
 @section('content')
 <div class="d-flex justify-content-between align-items-center">
-    <h1>Cadastrar Categoria</h1>
-    <a href="/categorias" type="button" class="btn btn-secondary">
+    <h1>Editar Receita</h1>
+    <a href="/receitas" type="button" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i>
         <span>Voltar para Receitas</span>
     </a>
 </div>
 
 <div class="mt-4">
-    <form action="/receitas" method="POST">
+    <form action="/receitas/update/{{$receita->id}}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="nome" class="form-label">Nome da Receita:</label>
@@ -18,11 +18,21 @@
         </div>
         <div class="mb-3">
             <label for="ingredientes" class="form-label">Ingredientes:</label>
-            <input type="text" class="form-control" id="ingredientes" name="ingredientes" placeholder="{{$receita->ingrediente}}" required>
+            <input type="text" class="form-control" id="ingredientes" name="ingredientes" placeholder="{{$receita->ingredientes}}" required>
         </div>
         <div class="mb-3">
             <label for="nome" class="form-label">Modo de preparo:</label>
             <input type="text" class="form-control" id="modo_preparo" name="modo_preparo" placeholder="{{$receita->modo_preparo}}" required>
+        </div>
+        <div class="mb-3">
+            <label for="categoria_id" class="form-label">Categoria:</label>
+            <select id="categoria_id" name="categoria_id" class="form-control">
+                @foreach($categorias as $categoria)
+                    <option value="{{ $categoria->id }}" @if($categoria->id == $receita->categoria_id) selected @endif>
+                        {{ $categoria->nome }}
+                    </option>
+                @endforeach
+            </select>
         </div>
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary">

@@ -51,7 +51,7 @@
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end">
                     <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                         <li>
-                            <a href="#" class="nav-link text-secondary">
+                            <a href="/" class="nav-link text-secondary">
                                 <svg class="bi d-block mx-auto mb-1" width="24" height="24" style="fill:white">
                                     <use xlink:href="#home" />
                                 </svg>
@@ -67,7 +67,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
+                            <a href="/receitas" class="nav-link text-white">
                                 <svg class="bi d-block mx-auto mb-1" width="24" height="24" style="fill:white">
                                     <use xlink:href="#table" />
                                 </svg>
@@ -75,21 +75,21 @@
                             </a>
                         </li>
                         <li>
-                            <a href="" class="nav-link text-white">
+                            <a href="/categorias" class="nav-link text-white">
                                 <svg class="bi d-block mx-auto mb-1" width="24" height="24" style="fill:white">
                                     <use xlink:href="#grid" />
                                 </svg>
                                 Categorias
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#" class="nav-link text-white">
                                 <svg class="bi d-block mx-auto mb-1" width="24" height="24"  style="fill:white">
                                     <use xlink:href="#people-circle" />
                                 </svg>
                                 Comentários
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
