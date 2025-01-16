@@ -25,3 +25,12 @@ Route::get('/receitas/edit/{id}', [ReceitaController::class, 'edit'])->name('rec
 Route::post('/receitas', [ReceitaController::class, 'store'])->name('receitas.store');
 Route::put('/receitas/update/{id}', [ReceitaController::class, 'update']);
 Route::delete('/receitas/{id}', [ReceitaController::class, 'destroy']);
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
