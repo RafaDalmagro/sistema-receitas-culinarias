@@ -55,11 +55,14 @@ class ReceitaController extends Controller
     }
 
     public function home(){
-        $receitas = Receita::withCount('comentarios')
+        $receitas = Receita::withCount('ultimoComentario','comentarios')
+            ->withCount('comentarios')
             ->orderBy('comentarios_count', 'desc')
             ->take(3)
             ->get();
 
         return view('welcome', compact('receitas'));
     }
+
+    
 }

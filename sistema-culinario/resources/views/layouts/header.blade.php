@@ -7,8 +7,8 @@
             <li class="nav-item"><a href="#footer" class="nav-link text-light px-2">Sobre</a></li>
         </ul>
         <ul class="nav">
-            <li class="nav-item"><a href="#" class="nav-link text-light px-2">Login</a></li>
-            <li class="nav-item"><a href="#" class="nav-link text-light px-2">Cadastrar-se</a></li>
+            <li class="nav-item"><a href="/login" class="nav-link text-light px-2">Login</a></li>
+            <li class="nav-item"><a href="/register" class="nav-link text-light px-2">Cadastrar-se</a></li>
         </ul>
     </div>
 </nav>
