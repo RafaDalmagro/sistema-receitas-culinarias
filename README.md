@@ -154,8 +154,7 @@ Configurar a autenticação no Laravel utilizando o Jetstream, integrando funcio
       'home' => '/',
   ];
   
-5. **Alterar tabelas.**
-- Users
+5. **Alterar tabela Users.**
 
 - 5.1 **Criar a migration (iremos incluir campo de endereço):**
     ```bash
