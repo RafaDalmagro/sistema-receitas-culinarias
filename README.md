@@ -122,73 +122,55 @@ Configurar a autenticação no Laravel utilizando o Jetstream, integrando funcio
 5. **Personalização da Tabela de Usuários**: Adição de campos personalizados na tabela `users` e integração com formulários.
 
 ---
-
-## Passo a Passo
-
-### Passo 1: Instalar o pacote Jetstream
+### Passo a passo.
+  
+1. **Instalar o pacote Jetstream**
 - Execute o seguinte comando para instalar o Jetstream via Composer:
   ```bash
   composer require laravel/jetstream
   ```
 
-## Passo 2: Instalar o Livewire
+2. **Instalar o Livewire**
 - Instale o Livewire, que será utilizado para criar interfaces dinâmicas:
   ```bash
   php artisan jetstream:install livewire
   ```
 
-## Passo 3: Rodar as Migrations e Instalar Dependências
+3. **Rodar as Migrations e Instalar Dependências**
 - Após a instalação do Jetstream e do Livewire, rode os seguintes comandos para configurar o ambiente:
   ```bash
   php artisan migrate
   npm install
   npm run dev
   ```
-## Passo 4: Alterar o Redirecionamento Padrão
+- Para acessar as telas de login e cadastro pode acessar:
+  ### http://127.0.0.1:8000/login
+  ### http://127.0.0.1:8000/register
+
+4. **Alterar o Redirecionamento Padrão**
 - Atualize o redirecionamento após login no arquivo `config/fortify.php`:
   ```php
   return [
       'home' => '/',
   ];
-
-## Passo 5: Adicionar um Campo à Tabela `users`
-- Adicione o campo `address` (endereço) para personalizar a tabela de usuários:
-
-### 5.1 Criar uma Migration
-- Crie uma migration para adicionar o campo `address` à tabela `users`:
-
-  ```bash
-    php artisan make:migration add_address_users --table=users
-  ```
-### 5.2 Rodar as Migrations.
--  Caso instale o Jetstream e o Livewire ele também podera solicitar para rodar as `Migrations`:
-  ```bash
-    php artisan migrate
-  ```
-### 5.3 Atualizar modelo `User`.
-- No arquivo `app/Models/User.php`, adicione o campo address à propriedade `$fillable`:
-  ```php
-      protected $fillable = [
-      'name',
-      'email',
-      'password',
-      'address',
-    ];
-  ```
-### 5.4 Atualizar o Formulário de Registro.
-- Atualize o arquivo `app/Actions/Fortify/CreateNewUser.php` para incluir validação e salvamento do campo `address`:
- ```php
-    Validator::make($input, [
-      'name' => ['required', 'string', 'max:255'],
-      'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-      'password' => $this->passwordRules(),
-      'address' => ['required', 'string', 'max:255'],
-    ])->validate();
   
-    User::create([
-      'name' => $input['name'],
-      'email' => $input['email'],
-      'password' => Hash::make($input['password']),
-      'address' => $input['address'],
-    ]);
-```
+5. **Alterar tabela Users.**
+
+- 5.1 **Criar a migration (iremos incluir campo de endereço):**
+    ```bash
+    php artisan make:migration add_address_users --table=users
+    ```
+  
+- 5.2 **Rodar a migration**
+    ```bash
+    php artisan migrate
+    ```
+- 5.3 **Atualizar o Modelo User**
+    ```bash
+    app/Models/User.php
+    ```
+  
+- 5.4 **Atualizar o Formulário de Registro**
+    ```bash
+    app/Actions/Fortify/CreateNewUser.php
+    ```
