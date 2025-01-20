@@ -32,7 +32,7 @@
                 </a>
             </td>
             <td>
-                <form action="/receitas/{{$receita->id}}" method="post">
+                <form action="/receitas/{{$receita->id}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir essa receita?')">

@@ -124,17 +124,33 @@
         </symbol>
     </svg>
 
-    @include('layouts.header')
-
-    <div class="d-flex">
-        @include('layouts.sidebar')
-
-        <div class="content flex-grow-1 p-5">
-            @yield('content')
+    @auth
+        <div class="d-flex flex-column min-vh-100">
+            <div class="flex-grow-1">
+                <div class="d-flex">
+                    @include('layouts.sidebar')
+                    <div class="content flex-grow-1 p-5">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
+            @include('layouts.footer')
         </div>
-    </div>
+    @endauth
 
-    @include('layouts.footer')
+    @guest
+        <div class="d-flex flex-column min-vh-100">
+            @include('layouts.header')
+            <div class="flex-grow-1 d-flex justify-content-center align-items-center">
+                <div class="container text-center">
+                    <h1>Bem-vindo, Visitante!</h1>
+                    <p>Por favor, <a href="/login">faça login</a> ou <a href="/register">registre-se</a> para acessar mais
+                        recursos.</p>
+                </div>
+            </div>
+            @include('layouts.footer')
+        </div>
+    @endguest
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">

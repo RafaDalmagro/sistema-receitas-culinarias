@@ -10,15 +10,16 @@
 </div>
 
 <div class="mt-4">
-    <form action="/categorias" method="POST">
+    <form action="/categorias/update/{{$categoria->id}}" method="POST">
         @csrf
+        @method('PUT')
         <div class="mb-3">
             <label for="nome" class="form-label">Nome da Categoria:</label>
-            <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome da categoria" required>
+            <input type="text" class="form-control" id="nome" name="nome" value="Digite o nome da categoria" required>
         </div>
         <div class="mb-3">
             <label for="nome" class="form-label">Descrição da Categoria:</label>
-            <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite a descricao da categoria" required>
+            <input type="text" class="form-control" id="descricao" name="descricao" value="Digite a descricao da categoria" required>
         </div>
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary">

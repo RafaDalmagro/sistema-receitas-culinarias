@@ -12,17 +12,18 @@
 <div class="mt-4">
     <form action="/receitas/update/{{$receita->id}}" method="POST">
         @csrf
+        @method('PUT')
         <div class="mb-3">
             <label for="nome" class="form-label">Nome da Receita:</label>
-            <input type="text" class="form-control" id="nome" name="nome" placeholder="{{$receita->nome}}" required>
+            <input type="text" class="form-control" id="nome" name="nome" value="{{$receita->nome}}" required>
         </div>
         <div class="mb-3">
             <label for="ingredientes" class="form-label">Ingredientes:</label>
-            <input type="text" class="form-control" id="ingredientes" name="ingredientes" placeholder="{{$receita->ingredientes}}" required>
+            <input type="text" class="form-control" id="ingredientes" name="ingredientes" value="{{$receita->ingredientes}}" required>
         </div>
         <div class="mb-3">
             <label for="nome" class="form-label">Modo de preparo:</label>
-            <input type="text" class="form-control" id="modo_preparo" name="modo_preparo" placeholder="{{$receita->modo_preparo}}" required>
+            <input type="text" class="form-control" id="modo_preparo" name="modo_preparo" value="{{$receita->modo_preparo}}" required>
         </div>
         <div class="mb-3">
             <label for="categoria_id" class="form-label">Categoria:</label>
