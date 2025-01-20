@@ -1,28 +1,27 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comentario;
-use App\Models\Receita;
 
 class ComentarioController extends Controller
 {
+
     public function store(Request $request, $receita_id)
     {
-        // Validação dos dados do formulário
         $request->validate([
-            'autor' => 'required|string|max:255',
-            'comentario' => 'required|string',
+            'comentario' => 'required|string|max:1000',
         ]);
 
-        // Criar o comentário
         Comentario::create([
-            'receita_id' => $receita_id, // Relaciona com a receita
-            'autor' => $request->autor,
             'comentario' => $request->comentario,
+            'receita_id' => $receita_id,
+            'user_id' => auth()->id(),
         ]);
+        
 
-        return redirect()->back()->with('success', 'Comentário adicionado com sucesso!');
+        return redirect()->route('receitas.show', $receita_id)->with('success', 'Comentário adicionado com sucesso!');
     }
 
     // Excluir um comentário
@@ -34,7 +33,8 @@ class ComentarioController extends Controller
         return redirect()->back()->with('success', 'Comentário excluído com sucesso!');
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $request->validate([
             'comentario' => 'required|string',
         ]);
@@ -47,5 +47,4 @@ class ComentarioController extends Controller
 
         return redirect()->back()->with('Success', 'Comentário atualizado com sucesso!');
     }
-    
 }

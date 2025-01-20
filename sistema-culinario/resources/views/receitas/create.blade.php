@@ -27,11 +27,12 @@
         <div class="mb-3">
             <label for="categoria_id" class="form-label">Categoria:</label>
             <select id="categoria_id" name="categoria_id" class="form-control">
+                <option value="" selected disabled>Selecione uma categoria</option>
                 @foreach($categorias as $categoria)
                     <option value="{{$categoria->id}}">{{$categoria->nome}}</option>
                 @endforeach
             </select>
-        </div>
+        </div>        
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary">
                 <i class="bi bi-check-circle"></i>

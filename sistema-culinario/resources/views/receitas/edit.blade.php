@@ -40,7 +40,7 @@
                 <i class="bi bi-check-circle"></i>
                 <span>Salvar</span>
             </button>
-            <a href="/categorias" class="btn btn-secondary mx-2">
+            <a href="/receitas/{{$receita->id}}" class="btn btn-secondary mx-2">
                 <i class="bi bi-x-circle"></i>
                 <span>Cancelar</span>
             </a>

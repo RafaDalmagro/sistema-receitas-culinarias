@@ -8,38 +8,29 @@
         <span>Cadastrar Categoria</span>
     </a>
 </div>
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>NOME</th>
-            <th>DESCRIÇÃO</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($categorias as $categoria)
-        <tr>
-            <td>{{$categoria->id}}</td>
-            <td>{{$categoria->nome}}</td>
-            <td>{{$categoria->descricao}}</td>
-            <td>
-                <a class="btn btn-primary" href="/categorias/edit/{{$categoria->id}}">
-                    <i class="bi bi-pencil-square"></i>
-                </a>
-            </td>
-            <td>
-                <form action="/categorias/{{$categoria->id}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir essa Categoria?')">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+
+<div class="row mt-4">
+    @foreach ($categorias as $categoria)
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{$categoria->nome}}</h5>
+                <p class="card-text text-muted">{{$categoria->descricao}}</p>
+                <div class="d-flex justify-content-between">
+                    <a class="btn btn-primary" href="/categorias/edit/{{$categoria->id}}">
+                        <i class="bi bi-pencil-square"></i> Editar
+                    </a>
+                    <form action="/categorias/{{$categoria->id}}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir essa Categoria?')">
+                            <i class="bi bi-trash"></i> Excluir
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
 @endsection

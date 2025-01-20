@@ -6,26 +6,48 @@
 <div class="container my-5">
 
     <div class="d-flex justify-content-end align-items-end">
-        <a href="/" type="button" class="btn btn-secondary">
+        <a href="/" type="button" class="btn btn-secondary me-2">
             <i class="bi bi-arrow-left"></i>
             <span>Voltar para o Início</span>
         </a>
+        <a class="btn btn-primary me-2" href="/receitas/edit/{{$receita->id}}">
+            <i class="bi bi-pencil-square"></i> Editar Receita
+        </a>
+        <form action="/receitas/{{$receita->id}}" method="POST" class="d-inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir essa receita?')">
+                <i class="bi bi-trash"></i> Excluir
+            </button>
+        </form>
     </div>
-
-    <h1>{{ $receita->nome }}</h1>
-    <p><strong>Ingredientes:</strong></p>
-    <p>{{ $receita->ingredientes }}</p>
-    <p><strong>Modo de Preparo:</strong></p>
-    <p>{{ $receita->modo_preparo }}</p>
-
+    <div class="container my-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="card-title text-center text-primary mb-4">{{ $receita->nome }}</h1>
+    
+                <h4 class="text-secondary">Ingredientes</h4>
+                <p class="mb-4">
+                    {{ $receita->ingredientes }}
+                </p>
+    
+                <h4 class="text-secondary">Modo de Preparo</h4>
+                <p class="card-text text-justify">
+                    {{ $receita->modo_preparo }}
+                </p>
+            </div>
+        </div>
+    </div>
+    
     <hr>
 
     <h2>Deixe seu Comentário</h2>
     <form action="{{ route('comentarios.store', $receita->id) }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="autor" class="form-label">Seu Nome</label>
-            <input type="text" class="form-control" id="autor" name="autor" required>
+            <label for="autor" class="form-label">Autor</label>
+            <input type="text" class="form-control" id="autor" name="autor" 
+                   value="{{ auth()->check() ? auth()->user()->name : '' }}" readonly required>
         </div>
         <div class="mb-3">
             <label for="comentario" class="form-label">Comentário</label>
@@ -33,6 +55,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Enviar Comentário</button>
     </form>
+    
 
     <hr>
     @if(session('success'))
@@ -48,7 +71,7 @@
     <ul class="list-group">
         @foreach($receita->comentarios as $comentario)
         <li class="list-group-item">
-            <strong>{{ $comentario->autor }}</strong> diz:
+            <strong>{{ $comentario->user->name }}</strong>:
             <p id="comentario-texto-{{ $comentario->id }}">{{ $comentario->comentario }}</p>
 
             <button class="btn btn-sm btn-warning" onclick="document.getElementById('edit-form-{{ $comentario->id }}').style.display = 'block';">

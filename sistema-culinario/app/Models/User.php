@@ -25,6 +25,10 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
+    public function comentarios(){
+        return $this->hasMany(Comentario::class);
+    }
+    
     protected $fillable = [
         'name',
         'email',

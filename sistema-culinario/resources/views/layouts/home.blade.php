@@ -139,10 +139,11 @@
     @guest
         <div class="d-flex flex-column min-vh-100">
             @include('layouts.header')
-            <div class="flex-grow-1 d-flex justify-content-center align-items-center">
-                <div class="container text-center">
-                    <h1>Olá!</h1>
-                    <p>Por favor, <a href="/login" style="">faça login</a> ou <a href="/register">registre-se</a> para acessar mais recursos.</p>
+            <div class="flex-grow-1">
+                <div class="d-flex">
+                    <div class="content flex-grow-1 p-5">
+                        @yield('content')
+                    </div>
                 </div>
             </div>
             @include('layouts.footer')
