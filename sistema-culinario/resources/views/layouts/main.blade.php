@@ -143,7 +143,7 @@
             @include('layouts.header')
             <div class="flex-grow-1 d-flex justify-content-center align-items-center">
                 <div class="container text-center">
-                    <h1>Bem-vindo, Visitante!</h1>
+                    <h1>Olá!</h1>
                     <p>Por favor, <a href="/login">faça login</a> ou <a href="/register">registre-se</a> para acessar mais
                         recursos.</p>
                 </div>

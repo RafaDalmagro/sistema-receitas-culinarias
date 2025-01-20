@@ -31,8 +31,8 @@
                 </button>
                 <div class="collapse" id="account-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="/receita/create" class="text-light d-inline-flex text-decoration-none rounded">Nova Receita</a></li>
-                        <li><a href="#" class="text-light d-inline-flex text-decoration-none rounded">Meus Dados</a></li>
+                        <li><a href="/receitas/create" class="text-light d-inline-flex text-decoration-none rounded">Nova Receita</a></li>
+                        <li><a href="/user/profile" class="text-light d-inline-flex text-decoration-none rounded">Meus Dados</a></li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="btn btn-danger">Sair</button>
