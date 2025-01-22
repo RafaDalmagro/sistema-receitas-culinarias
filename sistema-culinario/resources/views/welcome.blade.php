@@ -1,6 +1,3 @@
-@php
-    $contador = 1;
-@endphp
 @extends('layouts.home')
 @section('title', 'Receitas Rápidas')
 @section('content')
