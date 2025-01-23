@@ -38,7 +38,7 @@
                 <i class="bi bi-check-circle"></i>
                 <span>Salvar</span>
             </button>
-            <a href="/receitas" class="btn btn-secondary me-2">
+            <a href="/receitas" class="btn btn-secondary ms-2">
                 <i class="bi bi-x-circle"></i>
                 <span>Cancelar</span>
             </a>

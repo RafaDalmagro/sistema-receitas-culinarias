@@ -107,17 +107,21 @@
 
 <body>
     @auth
-        <div class="d-flex flex-column min-vh-100">
-            <div class="flex-grow-1">
-                <div class="d-flex">
+    <div class="d-flex flex-column min-vh-100">
+        <div class="flex-grow-1">
+            <div class="d-flex h-100">
+                <div class="sidebar bg-dark text-white p-3">
                     @include('layouts.sidebar')
-                    <div class="content flex-grow-1 p-5">
-                        @yield('content')
-                    </div>
+                </div>
+    
+                <div class="content flex-grow-1 p-5">
+                    @yield('content')
                 </div>
             </div>
-            @include('layouts.footer')
         </div>
+        @include('layouts.footer')
+    </div>
+    
     @endauth
 
     @guest

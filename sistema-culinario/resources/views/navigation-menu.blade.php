@@ -8,7 +8,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-nav-link href="/painel" :active="request()->routeIs('dashboard')">
                         {{ __('Painel') }}
                     </x-nav-link>
                 </div>
@@ -93,10 +93,15 @@
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Gerenciar Conta') }}
                             </div>
+                            
+                            <x-dropdown-link href="/">
+                                {{ __('Início') }}
+                            </x-dropdown-link>
 
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Perfil') }}
                             </x-dropdown-link>
+
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-dropdown-link href="{{ route('api-tokens.index') }}">
