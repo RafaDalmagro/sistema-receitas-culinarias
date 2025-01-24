@@ -1,0 +1,41 @@
+/* Estilo inspirado no Uiverse.io */
+.glass {
+  position: relative;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.glass:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+}
+
+.glass[data-text]::before {
+  content: attr(data-text);
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
+
+.glass:hover[data-text]::before {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Container para centralizar */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

@@ -14,6 +14,8 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="{{ asset('css/sidebars.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/uicomponents.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/social.css') }}">
 
     <style>
         html,
@@ -107,31 +109,30 @@
 
 <body>
     @auth
-    <div class="d-flex flex-column min-vh-100">
-        <div class="flex-grow-1">
-            <div class="d-flex h-100">
-                <div class="sidebar bg-dark text-white p-3">
-                    @include('layouts.sidebar')
-                </div>
-    
-                <div class="content flex-grow-1 p-5">
-                    @yield('content')
+        <div class="d-flex flex-column min-vh-100">
+            <div class="flex-grow-1">
+                <div class="d-flex h-100">
+                    <div class="sidebar bg-dark text-white p-3">
+                        @include('layouts.sidebar')
+                    </div>
+                    <div class="content flex-grow-1 p-5">
+                        @yield('content')
+                    </div>
                 </div>
             </div>
+            @include('layouts.footer')
         </div>
-        @include('layouts.footer')
-    </div>
-    
+
     @endauth
 
     @guest
         <div class="d-flex flex-column min-vh-100">
             @include('layouts.header')
-                <div class="content flex-grow-1 p-5">
-                    <div class="p-5">
-                        @yield('content')
-                    </div>
+            <div class="content flex-grow-1 p-5">
+                <div class="p-5">
+                    @yield('content')
                 </div>
+            </div>
             @include('layouts.footer')
         </div>
     @endguest

@@ -40,27 +40,38 @@
                     <x-checkbox id="remember_me" name="remember" />
                     <span class="ms-2 text-sm text-gray-600">{{ __('Lembrar-me') }}</span>
                 </label>
+
             </div>
-
-            <div class="d-flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 me-5"
-                    href="{{ url()->previous() }}">
-                    Voltar
-                </a>
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 me-5"
-                    href="/register">
-                    Cadastrar-se
-                </a>
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        href="{{ route('password.request') }}">
-                        {{ __('Esqueceu a senha?') }}
-                    </a>
-                @endif
-
-                <x-button class="ms-4">
+            <div>
+                <x-button class="ms-5 mt-3">
                     {{ __('Entrar') }}
                 </x-button>
+                <div class="m-2">
+                    @if (Route::has('password.request'))
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            href="{{ route('password.request') }}">
+                            {{ __('Esqueceu a senha?') }}
+                        </a>
+                    @endif
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="m-2">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 me-5"
+                        href="{{ url()->previous() }}">
+                        Voltar
+                    </a>
+                </div>
+                <div class="m-2">
+                    <h2>
+                        Não tem conta?
+                    </h2>
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 me-5"
+                        href="/register">
+                        Cadastre-se aqui
+                    </a>
+                </div>
+                
             </div>
         </form>
     </x-authentication-card>

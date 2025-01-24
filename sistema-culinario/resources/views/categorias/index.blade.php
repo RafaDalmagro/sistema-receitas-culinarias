@@ -11,16 +11,16 @@
 
 <div class="row mt-4">
     @foreach ($categorias as $categoria)
-    <div class="col-md-4 mb-4">
-        <div class="card shadow-sm h-100">
+    <div class="col-md-4 mb-3 mt-3">
+        <div class="card shadow-sm h-100 glass" data-text="Categoria">
             <div class="card-body">
-                <h5 class="card-title">{{$categoria->nome}}</h5>
-                <p class="card-text text-muted">{{$categoria->descricao}}</p>
+                <h5 class="card-title">{{ $categoria->nome }}</h5>
+                <p class="card-text text-muted">{{ $categoria->descricao }}</p>
                 <div class="d-flex justify-content-between">
-                    <a class="btn btn-primary" href="/categorias/edit/{{$categoria->id}}">
+                    <a class="btn btn-primary" href="/categorias/edit/{{ $categoria->id }}">
                         <i class="bi bi-pencil-square"></i> Editar
                     </a>
-                    <form action="/categorias/{{$categoria->id}}" method="POST" class="d-inline">
+                    <form action="/categorias/{{ $categoria->id }}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir essa Categoria?')">
@@ -33,4 +33,5 @@
     </div>
     @endforeach
 </div>
+
 @endsection
