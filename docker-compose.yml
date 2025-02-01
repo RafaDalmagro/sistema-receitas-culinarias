@@ -9,6 +9,10 @@ services:
     container_name: laravel_app
     restart: unless-stopped
     working_dir: /var/www
+    env_file:
+      - .env
+    depends_on:
+      - db
     volumes:
       - ./sistema-culinario:/var/www
     networks:
@@ -31,14 +35,12 @@ services:
     container_name: laravel_db
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: Senha@123
+      MYSQL_ROOT_PASSWORD: senha@123
       MYSQL_DATABASE: laravel
-      MYSQL_USER: root
-      MYSQL_PASSWORD: Senha@123
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: senha@123
     volumes:
       - dbdata:/var/lib/mysql
-    ports:
-      - "3306:3306"
     networks:
       - laravel_network
 
