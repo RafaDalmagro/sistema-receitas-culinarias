@@ -3,13 +3,7 @@ dist/
 .git/
 .DS_Store
 *.log
-
-.env.local
-.env.development
-.env.test
-
 .idea/
 .vscode/
-
 .cache/
 .temp/
