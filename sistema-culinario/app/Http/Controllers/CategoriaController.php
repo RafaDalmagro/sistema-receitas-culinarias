@@ -32,7 +32,7 @@ class CategoriaController extends Controller
 
     public function destroy($id){
         Categoria::findOrFail( $id )->delete() ;
-        return redirect( '/categories' )->with( 'msg', 'Categoria excluída com sucesso!' );
+        return redirect( '/categorias' )->with( 'msg', 'Categoria excluída com sucesso!' );
     }
 
     public function edit($id){

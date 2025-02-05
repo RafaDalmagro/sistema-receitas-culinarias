@@ -4,7 +4,7 @@
             <div class="col-md-3">
                 <h5 class="fw-bold mb-3 text-white">Receitas Rápidas</h5>
                 <p class="small text-white">
-                    Uma aplicação simples focada em auxiliar no preparo de receitas rápidas e praticas para sua rotina.
+                    Uma aplicação simples focada em auxiliar no preparo de receitas rápidas e práticas para sua rotina.
                 </p>
             </div>
 
