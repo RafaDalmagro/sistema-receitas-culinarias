@@ -15,11 +15,11 @@
         @method('PUT')
         <div class="mb-3">
             <label for="nome" class="form-label">Nome da Categoria:</label>
-            <input type="text" class="form-control" id="nome" name="nome" value="Digite o nome da categoria" required>
+            <input type="text" class="form-control" id="nome" name="nome" value="{{$categoria->nome}}" required>
         </div>
         <div class="mb-3">
             <label for="nome" class="form-label">Descrição da Categoria:</label>
-            <input type="text" class="form-control" id="descricao" name="descricao" value="Digite a descricao da categoria" required>
+            <input type="text" class="form-control" id="descricao" name="descricao" value="{{$categoria->descricao}}" required>
         </div>
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary">

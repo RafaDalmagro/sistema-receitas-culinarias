@@ -25,12 +25,12 @@
         <div class="card shadow-sm">
             <div class="card-body">
                 <h1 class="card-title text-center text-primary mb-4">{{ $receita->nome }}</h1>
-    
+
                 <h4 class="text-secondary">Ingredientes</h4>
                 <p class="mb-4">
                     {{ $receita->ingredientes }}
                 </p>
-    
+
                 <h4 class="text-secondary">Modo de Preparo</h4>
                 <p class="card-text text-justify">
                     {{ $receita->modo_preparo }}
@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
-    
+
     <hr>
 
     <h2>Deixe seu Comentário</h2>
@@ -46,8 +46,8 @@
         @csrf
         <div class="mb-3">
             <label for="autor" class="form-label">Autor</label>
-            <input type="text" class="form-control" id="autor" name="autor" 
-                   value="{{ auth()->check() ? auth()->user()->name : '' }}" readonly required>
+            <input type="text" class="form-control" id="autor" name="autor"
+                value="{{ auth()->check() ? auth()->user()->name : '' }}" readonly required>
         </div>
         <div class="mb-3">
             <label for="comentario" class="form-label">Comentário</label>
@@ -55,7 +55,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Enviar Comentário</button>
     </form>
-    
+
 
     <hr>
     @if(session('success'))
@@ -71,9 +71,10 @@
     <ul class="list-group">
         @foreach($receita->comentarios as $comentario)
         <li class="list-group-item">
-            <strong>{{ $comentario->user->name }}</strong>:
-            <p id="comentario-texto-{{ $comentario->id }}">{{ $comentario->comentario }}</p>
+            <strong>{{ $comentario->user->name }}</strong> diz:
+            <p>{{ $comentario->comentario }}</p>
 
+            @if(auth()->check() && auth()->id() === $comentario->user_id)
             <button class="btn btn-sm btn-warning" onclick="document.getElementById('edit-form-{{ $comentario->id }}').style.display = 'block';">
                 Editar
             </button>
@@ -81,7 +82,7 @@
             <form action="{{ route('comentarios.destroy', $comentario->id) }}" method="POST" style="display: inline;">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir este comentário?')">Excluir</button>
             </form>
 
             <form id="edit-form-{{ $comentario->id }}" action="{{ route('comentarios.update', $comentario->id) }}" method="POST" style="display: none;">
@@ -91,10 +92,9 @@
                     <textarea class="form-control" name="comentario" rows="2" required>{{ $comentario->comentario }}</textarea>
                 </div>
                 <button type="submit" class="btn btn-sm btn-primary">Salvar</button>
-                <button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('edit-form-{{ $comentario->id }}').style.display = 'none';">
-                    Cancelar
-                </button>
+                <button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('edit-form-{{ $comentario->id }}').style.display = 'none';">Cancelar</button>
             </form>
+            @endif
         </li>
         @endforeach
     </ul>
