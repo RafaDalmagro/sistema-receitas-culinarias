@@ -1,7 +1,7 @@
 # Resumo da Avaliação 2 - Programação Web
 
 ## Objetivo
-Com base no que nós aprendemos em sala precisamos desenvolver uma aplicação web completa utilizando o framework Laravel, com autenticação baseada no Jetstream e CRUDs implementados em um dashboard. A aplicação deve incluir relações one-to-many entre entidades e ser estilizada com Bootstrap.
+Com base no que aprendemos em sala, precisamos desenvolver uma aplicação web completa utilizando o framework Laravel, com autenticação baseada no Jetstream e CRUDs implementados em um dashboard. A aplicação deve incluir relações one-to-many entre entidades e ser estilizada com Bootstrap.
 
 ## Requisitos Gerais
 1. **Autenticação**: Sistema de login, registro e recuperação de senha com Laravel Jetstream. Acesso ao dashboard restrito a usuários logados.
@@ -13,7 +13,7 @@ Com base no que nós aprendemos em sala precisamos desenvolver uma aplicação w
 
 ---
 
-## Tema do projeto - Sistema de Receitas Culinárias
+## Tema do Projeto - Sistema de Receitas Culinárias
 ### Requisitos Específicos
 - **CRUDs**:
   - **Receitas**: Nome, ingredientes, modo de preparo e categoria.
@@ -26,7 +26,7 @@ Com base no que nós aprendemos em sala precisamos desenvolver uma aplicação w
 
 ---
 
-### Entrega
+## Entrega
 - **Data**: 06/02/2025
 - **Formato**: Apresentação do projeto rodando e entrega em repositório Git.
 - **Critérios de Avaliação**:
@@ -35,142 +35,126 @@ Com base no que nós aprendemos em sala precisamos desenvolver uma aplicação w
   - Front-end estilizado e responsivo.
 
 ### Link da documentação no Notion
-https://www.notion.so/leafarel/Sistema-de-Receitas-Culin-rias-173e3cc5ff30806281fec971c9eb9e68?pvs=4
+[Notion - Sistema de Receitas Culinárias](https://www.notion.so/leafarel/Sistema-de-Receitas-Culin-rias-173e3cc5ff30806281fec971c9eb9e68?pvs=4)
+
+---
 
 ## Configurar o Projeto Laravel em Outra Máquina
 
 ### Requisitos Específicos
 - **Dependências necessárias**:
-  - **PHP**: Certifique-se de que a máquina possui a versão adequada para o Laravel (ex.: PHP 8.1).
+  - **PHP**: Certifique-se de que a máquina possui a versão adequada para o Laravel.
   - **Composer**: Para gerenciar as dependências do Laravel.
-  - **Node.js e NPM**: Caso o projeto utilize assets (CSS/JS).
+  - **Node.js e NPM**: Para gerenciar as dependências do Jetstream e Livewire.
   - **Banco de Dados**: MySQL ou outro configurado no projeto.
 
 ---
 
-### Passo a Passo para Configuração.
+### Passo a Passo para Configuração
 
 1. **Clonar o Repositório**
-   - Abra o terminal e vá até o diretório onde deseja clonar o projeto:
-     ```bash
-     cd /caminho/escolhido
-     ```
-   - Clone o repositório do Git:
-     ```bash
-     git clone https://github.com/RafaDalmagro/sistema-receitas-culinarias.git
-     ```
-   - Entre no diretório do projeto:
-     ```bash
-     cd sistema-receitas-culinarias
-     ```
+   ```bash
+   git clone https://github.com/RafaDalmagro/sistema-receitas-culinarias.git
+   cd sistema-receitas-culinarias
+   ```
 
 2. **Instalar Dependências**
-   - Instale as dependências do PHP com o Composer:
-     ```bash
-     composer install
-     ```
-     
+   ```bash
+   composer install
+   ```
+
 3. **Configurar o Arquivo `.env`**
-   - Copie o arquivo de exemplo `.env.example` para `.env`:
-     ```bash
-     cp .env.example .env
-     ```
-   - Configure as informações do banco de dados no `.env`, ajuste conforme o banco de dados que está usando:
-     ```
-     DB_CONNECTION=mysql
-     DB_HOST=127.0.0.1
-     DB_PORT=3306
-     DB_DATABASE=
-     DB_USERNAME=
-     DB_PASSWORD=
-     ```
-     
+   ```bash
+   cp .env.example .env
+   ```
+   - Configure as informações do banco de dados:
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=nome_do_banco
+   DB_USERNAME=usuario
+   DB_PASSWORD=senha
+   ```
+
 4. **Gerar a Chave da Aplicação**
-   - Execute o comando para gerar a chave:
-     ```bash
-     php artisan key:generate
-     ```
+   ```bash
+   php artisan key:generate
+   ```
 
 5. **Configurar o Banco de Dados**
-   - Certifique-se de que o banco de dados configurado no `.env` existe.
-   - Execute as migrations para criar as tabelas:
+   - Certifique-se de que o banco está criado antes de rodar as migrations.
+   ```bash
+   php artisan migrate
+   php artisan db:seed
+   ```
+
+6. **Iniciar o Servidor**
+   ```bash
+   php artisan serve
+   ```
+   - Acesse [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+---
+
+## Parte de Autenticação no Laravel
+
+### Passo a Passo
+
+1. **Instalar o Jetstream e Livewire**
+   ```bash
+   composer require laravel/jetstream
+   php artisan jetstream:install livewire
+   ```
+
+2. **Rodar as Migrations e Instalar Dependências**
+   ```bash
+   php artisan migrate
+   npm install
+   npm run dev
+   ```
+   - Acesse as páginas de autenticação:
+     - [Login](http://127.0.0.1:8000/login)
+     - [Registro](http://127.0.0.1:8000/register)
+
+3. **Alterar o Redirecionamento Padrão**
+   ```php
+   return [
+       'home' => '/',
+   ];
+   ```
+
+4. **Alterar a Tabela `Users`**
+   - Criar a migration para adicionar o campo de endereço:
+     ```bash
+     php artisan make:migration add_address_users --table=users
+     ```
+   - Rodar a migration:
      ```bash
      php artisan migrate
      ```
-   - Se desejar, o projeto contém seeders, execute para popular o banco:
+   - Atualizar o modelo `User.php` e o formulário de registro:
      ```bash
-     php artisan db:seed
+     app/Models/User.php
+     app/Actions/Fortify/CreateNewUser.php
      ```
-
-6. **Iniciar o Servidor**
-   - Rode o servidor local do Laravel:
-     ```bash
-     php artisan serve
-     ```
-   - Acesse o projeto no navegador em [http://127.0.0.1:8000](http://127.0.0.1:8000).
-
-# Parte de Autenticação no Laravel
-
-## Objetivo
-Configurar a autenticação no Laravel utilizando o Jetstream, integrando funcionalidades de login, registro e personalização de usuários.
-
-## Requisitos Gerais
-1. **Instalar o Jetstream**: Instalação e configuração do Laravel Jetstream para autenticação.
-2. **Livewire**: Integração com Livewire para criação de interfaces dinâmicas.
-3. **Migrações e Dependências**: Execução de migrações e configuração do ambiente de desenvolvimento.
-4. **Redirecionamento Padrão**: Alteração do redirecionamento pós-login no Fortify.
-5. **Personalização da Tabela de Usuários**: Adição de campos personalizados na tabela `users` e integração com formulários.
 
 ---
-### Passo a passo.
-  
-1. **Instalar o pacote Jetstream**
-- Execute o seguinte comando para instalar o Jetstream via Composer:
-  ```bash
-  composer require laravel/jetstream
-  ```
 
-2. **Instalar o Livewire**
-- Instale o Livewire, que será utilizado para criar interfaces dinâmicas:
-  ```bash
-  php artisan jetstream:install livewire
-  ```
+## Soluções dos problemas que enfrentei durante o proejto.
 
-3. **Rodar as Migrations e Instalar Dependências**
-- Após a instalação do Jetstream e do Livewire, rode os seguintes comandos para configurar o ambiente:
-  ```bash
-  php artisan migrate
-  npm install
-  npm run dev
-  ```
-- Para acessar as telas de login e cadastro pode acessar:
-  ### http://127.0.0.1:8000/login
-  ### http://127.0.0.1:8000/register
+- Verifique se o Laravel Jetstream está instalado corretamente.
+- Confirme que as migrations foram rodadas corretamente.
+- Confira o arquivo `.env` para garantir que as credenciais do banco estão corretas.
+- Confira a conexão com o banco de dados.
 
-4. **Alterar o Redirecionamento Padrão**
-- Atualize o redirecionamento após login no arquivo `config/fortify.php`:
-  ```php
-  return [
-      'home' => '/',
-  ];
-  
-5. **Alterar tabela Users.**
+### Como resetar as migrations?
+```bash
+php artisan migrate:fresh --seed
+```
+Isso apagará todas as tabelas e recriará do zero com os seeders.
 
-- 5.1 **Criar a migration (iremos incluir campo de endereço):**
-    ```bash
-    php artisan make:migration add_address_users --table=users
-    ```
-  
-- 5.2 **Rodar a migration**
-    ```bash
-    php artisan migrate
-    ```
-- 5.3 **Atualizar o Modelo User**
-    ```bash
-    app/Models/User.php
-    ```
-  
-- 5.4 **Atualizar o Formulário de Registro**
-    ```bash
-    app/Actions/Fortify/CreateNewUser.php
-    ```
+---
+
+
+
