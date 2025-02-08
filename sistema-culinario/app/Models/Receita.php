@@ -24,4 +24,8 @@ class Receita extends Model
     {
         return $this->hasOne(Comentario::class)->latestOfMany();
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

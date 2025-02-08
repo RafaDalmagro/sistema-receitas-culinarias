@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Receita;
 use App\Models\Categoria;
+use Illuminate\Support\Facades\Auth;
 
 class ReceitaController extends Controller
 {
     public function index(){
         $receitas = Receita::with('categoria')->get();
-
         return view('receitas.index', compact('receitas'));
     }
 
@@ -26,6 +26,7 @@ class ReceitaController extends Controller
         $receita->ingredientes = $request->ingredientes;
         $receita->modo_preparo = $request->modo_preparo;
         $receita->categoria_id = $request->categoria_id;
+        $receita->user_id = Auth::id();
         $receita->save();
 
         return redirect('/receitas')->with('msg', 'Receita criada com sucesso!');
@@ -33,12 +34,17 @@ class ReceitaController extends Controller
 
     public function show($id){
         $receita = Receita::with('comentarios')->findOrFail($id);
-
         return view('receitas.show', compact('receita'));
     }
 
     public function destroy($id){
-        Receita::findOrFail($id)->delete();
+        $receita = Receita::findOrFail($id);
+
+        if ($receita->user_id != Auth::id()) {
+            return redirect('/receitas')->with('error', 'Você não tem permissão para excluir essa receita!');
+        }
+
+        $receita->delete();
         return redirect('/receitas')->with('msg', 'Receita excluída com sucesso!');
     }
 
@@ -46,23 +52,30 @@ class ReceitaController extends Controller
         $categorias = Categoria::all();
         $receita = Receita::findOrFail($id);
 
+        if ($receita->user_id != Auth::id()) {
+            return redirect('/receitas')->with('error', 'Você não tem permissão para editar essa receita!');
+        }
+
         return view('receitas.edit', ['receita' => $receita, 'categorias' => $categorias]);
     }
 
     public function update(Request $request){
-        Receita::findOrFail($request->id)->update($request->all());
+        $receita = Receita::findOrFail($request->id);
+
+        if ($receita->user_id != Auth::id()) {
+            return redirect('/receitas')->with('error', 'Você não tem permissão para editar essa receita!');
+        }
+
+        $receita->update($request->all());
         return redirect('/receitas')->with('msg', 'Receita editada com sucesso.');
     }
 
     public function home(){
-        $receitas = Receita::withCount('ultimoComentario','comentarios')
-            ->withCount('comentarios')
+        $receitas = Receita::withCount('comentarios')
             ->orderBy('comentarios_count', 'desc')
             ->take(5)
             ->get();
 
         return view('welcome', compact('receitas'));
     }
-
-    
 }

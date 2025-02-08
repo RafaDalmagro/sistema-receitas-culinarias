@@ -18,11 +18,12 @@
         </div>
         <div class="mb-3">
             <label for="ingredientes" class="form-label">Ingredientes:</label>
-            <input type="text" class="form-control" id="ingredientes" name="ingredientes" placeholder="Digite os ingredientes da receita" required>
+            <textarea class="form-control" id="ingredientes" name="ingredientes" placeholder="Digite os ingredientes da receita" rows="5" required></textarea>
         </div>
+        
         <div class="mb-3">
             <label for="modo_preparo" class="form-label">Modo de Preparo:</label>
-            <input type="text" class="form-control" id="modo_preparo" name="modo_preparo" placeholder="Descreva o modo de preparo" required>
+            <textarea class="form-control" id="modo_preparo" name="modo_preparo" placeholder="Descreva o modo de preparo" rows="5" required></textarea>
         </div>
         <div class="mb-3">
             <label for="categoria_id" class="form-label">Categoria:</label>
