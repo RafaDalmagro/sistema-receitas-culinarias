@@ -5,7 +5,7 @@ services:
     build:
       context: ./sistema-culinario
       dockerfile: Dockerfile
-    image: receita-docker-compose:1.8
+    image: rafadalmagro/compose-images:0.0.1
     container_name: laravel_app
     restart: unless-stopped
     working_dir: /var/www
