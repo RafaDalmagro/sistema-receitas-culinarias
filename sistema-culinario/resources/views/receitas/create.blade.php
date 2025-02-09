@@ -10,30 +10,37 @@
 </div>
 
 <div class="mt-4">
-    <form action="/receitas" method="POST">
+    <form id="receita-form" action="/receitas" method="POST" onsubmit="return validarFormulario()">
         @csrf
         <div class="mb-3">
             <label for="nome" class="form-label">Nome da Receita:</label>
             <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome da receita" required>
+            <div class="invalid-feedback">Por favor, informe um nome válido.</div>
         </div>
+
         <div class="mb-3">
             <label for="ingredientes" class="form-label">Ingredientes:</label>
             <textarea class="form-control" id="ingredientes" name="ingredientes" placeholder="Digite os ingredientes da receita" rows="5" required></textarea>
+            <div class="invalid-feedback">Os ingredientes não podem estar vazios.</div>
         </div>
-        
+
         <div class="mb-3">
             <label for="modo_preparo" class="form-label">Modo de Preparo:</label>
             <textarea class="form-control" id="modo_preparo" name="modo_preparo" placeholder="Descreva o modo de preparo" rows="5" required></textarea>
+            <div class="invalid-feedback">O modo de preparo é obrigatório.</div>
         </div>
+
         <div class="mb-3">
             <label for="categoria_id" class="form-label">Categoria:</label>
-            <select id="categoria_id" name="categoria_id" class="form-control">
+            <select id="categoria_id" name="categoria_id" class="form-control" required>
                 <option value="" selected disabled>Selecione uma categoria</option>
                 @foreach($categorias as $categoria)
-                    <option value="{{$categoria->id}}">{{$categoria->nome}}</option>
+                <option value="{{$categoria->id}}">{{$categoria->nome}}</option>
                 @endforeach
             </select>
-        </div>        
+            <div class="invalid-feedback">Selecione uma categoria válida.</div>
+        </div>
+
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-primary">
                 <i class="bi bi-check-circle"></i>

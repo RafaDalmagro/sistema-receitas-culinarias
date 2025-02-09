@@ -9,7 +9,7 @@ class Receita extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome', 'ingredientes', 'modo_preparo', 'categoria_id'];
+    protected $fillable = ['nome', 'ingredientes', 'modo_preparo', 'categoria_id', 'user_id'];
 
     public function categoria()
     {

@@ -6,38 +6,52 @@ use Illuminate\Http\Request;
 use App\Models\Receita;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class ReceitaController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $receitas = Receita::with('categoria')->get();
         return view('receitas.index', compact('receitas'));
     }
 
-    public function create(){
+    public function create()
+    {
         $categorias = Categoria::all();
         return view('receitas.create', ['categorias' => $categorias]);
     }
 
-    public function store(Request $request){
-        $receita = new Receita();
+    public function store(Request $request)
+    {
+        
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'ingredientes' => 'required|string',
+            'modo_preparo' => 'required|string',
+            'categoria_id' => 'required|exists:categorias,id',
+        ]);
 
-        $receita->nome = $request->nome;
-        $receita->ingredientes = $request->ingredientes;
-        $receita->modo_preparo = $request->modo_preparo;
-        $receita->categoria_id = $request->categoria_id;
-        $receita->user_id = Auth::id();
-        $receita->save();
+        Receita::create([
+            'nome' => trim($request->nome),
+            'ingredientes' => trim($request->ingredientes),
+            'modo_preparo' => trim($request->modo_preparo),
+            'categoria_id' => $request->categoria_id,
+            'user_id' => auth()->id(),
+        ]);
 
         return redirect('/receitas')->with('msg', 'Receita criada com sucesso!');
     }
 
-    public function show($id){
+
+    public function show($id)
+    {
         $receita = Receita::with('comentarios')->findOrFail($id);
         return view('receitas.show', compact('receita'));
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $receita = Receita::findOrFail($id);
 
         if ($receita->user_id != Auth::id()) {
@@ -48,7 +62,8 @@ class ReceitaController extends Controller
         return redirect('/receitas')->with('msg', 'Receita excluída com sucesso!');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $categorias = Categoria::all();
         $receita = Receita::findOrFail($id);
 
@@ -59,7 +74,8 @@ class ReceitaController extends Controller
         return view('receitas.edit', ['receita' => $receita, 'categorias' => $categorias]);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $receita = Receita::findOrFail($request->id);
 
         if ($receita->user_id != Auth::id()) {
@@ -70,7 +86,8 @@ class ReceitaController extends Controller
         return redirect('/receitas')->with('msg', 'Receita editada com sucesso.');
     }
 
-    public function home(){
+    public function home()
+    {
         $receitas = Receita::withCount('comentarios')
             ->orderBy('comentarios_count', 'desc')
             ->take(5)

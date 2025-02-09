@@ -100,30 +100,30 @@
 
 <body>
     @auth
-        <div class="d-flex flex-column min-vh-100">
-            <div class="flex-grow-1">
-                <div class="d-flex">
-                    @include('layouts.sidebar')
-                    <div class="content flex-grow-1 p-5">
-                        @yield('content')
-                    </div>
+    <div class="d-flex flex-column min-vh-100">
+        <div class="flex-grow-1">
+            <div class="d-flex">
+                @include('layouts.sidebar')
+                <div class="content flex-grow-1 p-5">
+                    @yield('content')
                 </div>
             </div>
         </div>
+    </div>
     @endauth
 
     @guest
-        <div class="d-flex flex-column min-vh-100">
-            @include('layouts.header')
-            <div class="flex-grow-1 d-flex justify-content-center align-items-center">
-                <div class="container text-center">
-                    <h1>Olá!</h1>
-                    <p>Por favor, <a href="/login">faça login</a> ou <a href="/register">registre-se</a> para acessar mais
-                        recursos.</p>
-                </div>
+    <div class="d-flex flex-column min-vh-100">
+        @include('layouts.header')
+        <div class="flex-grow-1 d-flex justify-content-center align-items-center">
+            <div class="container text-center">
+                <h1>Olá!</h1>
+                <p>Por favor, <a href="/login">faça login</a> ou <a href="/register">registre-se</a> para acessar mais
+                    recursos.</p>
             </div>
-            @include('layouts.footer')
         </div>
+        @include('layouts.footer')
+    </div>
     @endguest
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -134,6 +134,26 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
     <script src="sidebars.js"></script>
+    <script>
+        function validarFormulario() {
+            let campos = document.querySelectorAll("#receita-form input, #receita-form textarea, #receita-form select");
+            let valido = true;
+
+            campos.forEach(campo => {
+                campo.value = campo.value.trim(); // Remove espaços no início e fim
+
+                if (campo.value === "" || campo.value === null) {
+                    campo.classList.add("is-invalid"); // Adiciona borda vermelha do Bootstrap
+                    valido = false;
+                } else {
+                    campo.classList.remove("is-invalid"); // Remove borda vermelha se estiver correto
+                }
+            });
+
+            return valido;
+        }
+    </script>
+
 </body>
 
 </html>
